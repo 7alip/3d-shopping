@@ -37,7 +37,7 @@ import { FiInfo, FiPlusCircle } from "react-icons/fi";
 import { useMemo } from "react";
 
 const REMOTE_PUBLIC_URL = "https://arspar.s3.eu-central-1.amazonaws.com/";
-const LOCALE_PUBLIC_URL = "https:/arspar.ngrok.io";
+// const LOCALE_PUBLIC_URL = "https:/arspar.ngrok.io";
 
 type ModelDataType = {
   id: string;
@@ -211,7 +211,7 @@ export const SceneComponent = () => {
   };
 
   const clickedMesh = useCallback((mesh: AbstractMesh, scene: Scene) => {
-    const [meshTNodeName, variant, meshName] = mesh.name.split("__");
+    const [meshTNodeName, variant] = mesh.name.split("__");
 
     scene.meshes.forEach((m) => {
       if (m.name.match(`${meshTNodeName}__${variant}`)) {
