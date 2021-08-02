@@ -225,6 +225,7 @@ export const SceneComponent = () => {
 
     selectActiveTransformNode(meshTNodeName);
     setActiveVariant(variant);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const totalPrice = useMemo(
