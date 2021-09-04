@@ -37,7 +37,7 @@ import { FiInfo, FiPlusCircle } from "react-icons/fi";
 import { useMemo } from "react";
 
 const REMOTE_PUBLIC_URL = "https://arspar.s3.eu-central-1.amazonaws.com/";
-// const LOCALE_PUBLIC_URL = "https:/arspar.ngrok.io";
+// const REMOTE_PUBLIC_URL = "http://localhost:3000/";
 
 type ModelDataType = {
   id: string;
@@ -53,15 +53,35 @@ type ModelDataType = {
 
 const MODEL_DATA: ModelDataType[] = [
   {
-    id: "stand",
-    text: "Stand",
+    id: "motor",
+    text: "Motor",
     variants: [
       {
-        id: "default",
-        name: "Default",
+        id: "a",
+        name: "A",
         price: 300,
-        image: "/stand__default.png",
+        image: "/motor__a.png",
         isSelected: true,
+      },
+    ],
+  },
+  {
+    id: "wheel",
+    text: "Wheel",
+    variants: [
+      {
+        id: "a",
+        name: "A",
+        price: 220,
+        image: "/wheel__a.png",
+        isSelected: true,
+      },
+      {
+        id: "b",
+        name: "B",
+        price: 320,
+        image: "/wheel__b.png",
+        isSelected: false,
       },
     ],
   },
@@ -70,46 +90,161 @@ const MODEL_DATA: ModelDataType[] = [
     text: "Seat",
     variants: [
       {
-        id: "default",
-        name: "Default",
-        price: 220,
-        image: "/seat__default.png",
+        id: "a",
+        name: "A",
+        price: 105,
+        image: "/seat__a.png",
         isSelected: true,
       },
       {
-        id: "ring-chair",
-        name: "Ring Chair",
-        price: 320,
-        image: "/seat__ring-chair.png",
+        id: "b",
+        name: "B",
+        price: 140,
+        image: "/seat__b.png",
+        isSelected: false,
+      },
+      {
+        id: "c",
+        name: "C",
+        price: 155,
+        image: "/seat__c.png",
         isSelected: false,
       },
     ],
   },
   {
-    id: "beanbag",
-    text: "Beanbag",
+    id: "stand",
+    text: "Stand",
     variants: [
       {
-        id: "default",
-        name: "Default",
+        id: "a",
+        name: "A",
         price: 105,
-        image: "/beanbag__default.png",
+        image: "/stand__a.png",
         isSelected: true,
       },
       {
-        id: "short-stool",
-        name: "Short Stool",
+        id: "b",
+        name: "B",
         price: 140,
-        image: "/beanbag__short-stool.png",
+        image: "/stand__b.png",
+        isSelected: false,
+      }
+    ],
+  },
+  {
+    id: "seat",
+    text: "Seat",
+    variants: [
+      {
+        id: "a",
+        name: "A",
+        price: 105,
+        image: "/seat__a.png",
+        isSelected: true,
+      },
+      {
+        id: "b",
+        name: "B",
+        price: 140,
+        image: "/seat__b.png",
         isSelected: false,
       },
       {
-        id: "long-stool",
-        name: "Long Stool",
+        id: "c",
+        name: "C",
         price: 155,
-        image: "/beanbag__long-stool.png",
+        image: "/seat__c.png",
         isSelected: false,
       },
+    ],
+  },
+  {
+    id: "pedal",
+    text: "Pedal",
+    variants: [
+      {
+        id: "a",
+        name: "A",
+        price: 105,
+        image: "/pedal__a.png",
+        isSelected: true,
+      },
+      {
+        id: "b",
+        name: "B",
+        price: 140,
+        image: "/pedal__b.png",
+        isSelected: false,
+      },
+      {
+        id: "c",
+        name: "C",
+        price: 140,
+        image: "/pedal__c.png",
+        isSelected: false,
+      }
+    ],
+  },
+  {
+    id: "shifter",
+    text: "Shifter",
+    variants: [
+      {
+        id: "a",
+        name: "A",
+        price: 105,
+        image: "/shifter__a.png",
+        isSelected: true,
+      },
+      {
+        id: "b",
+        name: "B",
+        price: 140,
+        image: "/shifter__b.png",
+        isSelected: false,
+      },
+      {
+        id: "c",
+        name: "C",
+        price: 140,
+        image: "/shifter__c.png",
+        isSelected: false,
+      },
+      {
+        id: "d",
+        name: "D",
+        price: 140,
+        image: "/shifter__d.png",
+        isSelected: false,
+      }
+    ],
+  },
+  {
+    id: "frame",
+    text: "Frame",
+    variants: [
+      {
+        id: "a",
+        name: "A",
+        price: 105,
+        image: "/frame__a.png",
+        isSelected: true,
+      },
+      {
+        id: "b",
+        name: "B",
+        price: 140,
+        image: "/frame__b.png",
+        isSelected: false,
+      },
+      {
+        id: "c",
+        name: "C",
+        price: 140,
+        image: "/frame__c.png",
+        isSelected: false,
+      }
     ],
   },
 ];
@@ -124,7 +259,7 @@ export const SceneComponent = () => {
 
   const [activeNodeName, setActiveNodeName] = useState<Nullable<string>>(null);
   const [activeVariant, setActiveVariant] =
-    useState<Nullable<string>>("default");
+    useState<Nullable<string>>("a");
 
   const highlightLayerEL = useRef<any>(null);
 
@@ -277,7 +412,7 @@ export const SceneComponent = () => {
                 attachToMeshesByName={["s"]}
                 name="test2"
                 rootUrl={`${REMOTE_PUBLIC_URL}`}
-                sceneFilename="full_furniture_3c81b5eed1.glb"
+                sceneFilename="T80_8d8df36d2d.glb"
                 scaleToDimension={3.0}
               />
             </Suspense>
@@ -339,7 +474,7 @@ export const SceneComponent = () => {
           right={8}
         >
           <Box textAlign="center">
-            <Heading size="4xl">TR160</Heading>
+            <Heading size="4xl">TR80</Heading>
             <Text fontWeight="bold" fontSize="2em">
               Build your own
             </Text>
@@ -390,14 +525,14 @@ export const SceneComponent = () => {
               >
                 Current Configuration
               </Heading>
-              {modelData.map((item) => (
-                <Box key={item.id}>
+              {modelData.map((item, i) => (
+                <Box key={i}>
                   {item.variants
                     .filter((variant) => variant.isSelected)
-                    .map((variant) => (
+                    .map((variant, i) => (
                       <Flex
                         pos="relative"
-                        key={variant.name}
+                        key={i}
                         p={4}
                         bgGradient="linear(to-b, gray.200, gray.300)"
                         minH={250}
@@ -456,7 +591,7 @@ export const SceneComponent = () => {
                           ml="auto"
                           objectFit="contain"
                           boxSize={32}
-                          src={variant.image}
+                          src={`/images${variant.image}`}
                         />
                       </Flex>
                     ))}
@@ -485,10 +620,10 @@ export const SceneComponent = () => {
                 </HStack>
                 {modelData
                   .find((item) => item.id === activeNodeName)
-                  ?.variants.map((variant) => (
+                  ?.variants.map((variant, i) => (
                     <Flex
                       pos="relative"
-                      key={variant.name}
+                      key={i}
                       my={2}
                       p={4}
                       bgGradient="linear(to-b, gray.200, gray.300)"
@@ -544,7 +679,7 @@ export const SceneComponent = () => {
                         ml="auto"
                         objectFit="contain"
                         boxSize={32}
-                        src={variant.image}
+                        src={`/images${variant.image}`}
                       />
                     </Flex>
                   ))}
